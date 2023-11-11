@@ -24,13 +24,17 @@ public class ProxyClient {
                 properties.load(Files.newInputStream(path));
             }
 
-            PORT = (int) properties.getOrDefault("port",44444);
-            PPORT = (int) properties.getOrDefault("pport",30000);
-            serverip = (String) properties.getOrDefault("sip","localhost");
-            serverport = (int) properties.getOrDefault("sport",25500);
+            PORT = progetint("port",44444);
+            PPORT = progetint("pport",30000);
+            serverip = properties.getOrDefault("sip","localhost").toString();
+            serverport = progetint("sport",25500);
         }
 
         ProxyClientServer pcs = new ProxyClientServer();
         pcs.startserver();
+    }
+
+    public static int progetint(String key,int p){
+        return Integer.getInteger(properties.getOrDefault(key,p).toString(),p);
     }
 }

@@ -70,6 +70,7 @@ public class ProxyClientServer {
     public void startserver(){
         try{
             serverSocket = new ServerSocket(ProxyClient.PORT);
+            System.out.println(String.format("启动成功！端口：%d退出请强制", ProxyClient.PORT));
             while (true){
                 new ProxyClientServer(serverSocket.accept()).start();
             }
