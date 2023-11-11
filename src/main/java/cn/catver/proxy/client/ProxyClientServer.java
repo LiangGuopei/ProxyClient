@@ -3,8 +3,10 @@ package cn.catver.proxy.client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.StringWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Properties;
 
 public class ProxyClientServer {
     public ProxyClientServer(){}
@@ -18,7 +20,13 @@ public class ProxyClientServer {
             server.server = new Socket(ProxyClient.serverip,ProxyClient.serverport);
 
             PrintStream ps = new PrintStream(server.server.getOutputStream());
-            ps.println(ProxyClient.PPORT);
+            Properties properties = new Properties();
+            properties.put("version",ProxyClient.version);
+            properties.put("port",ProxyClient.PPORT);
+            StringWriter sw = new StringWriter();
+            properties.store(sw,"qwq");
+            ps.println(sw.toString());
+            //ps.println(ProxyClient.PPORT);
 
             if(server.server.isClosed()){
                 return;

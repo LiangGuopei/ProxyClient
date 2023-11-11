@@ -13,6 +13,8 @@ public class ProxyClient {
     public static String serverip = "localhost";
     public static int serverport = 25500;
 
+    public static String version = "ver1";
+
     public static Properties properties = new Properties();
     public static void main(String[] args) throws IOException {
         { //读取配置
