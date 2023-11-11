@@ -22,7 +22,7 @@ public class ProxyClientServer {
             PrintStream ps = new PrintStream(server.server.getOutputStream());
             Properties properties = new Properties();
             properties.put("version",ProxyClient.version);
-            properties.put("port",ProxyClient.PPORT);
+            properties.put("port", String.format("%d", ProxyClient.PPORT));
             StringWriter sw = new StringWriter();
             properties.store(sw,"qwq");
             ps.println(sw.toString());
